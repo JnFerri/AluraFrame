@@ -14,7 +14,10 @@ class NegociacaoController {
     adiciona(event){
         event.preventDefault()
 
-        let data = new Date(this._inputData.value.split('-'))
+        let dataArray = this._inputData.value.split('-')
+        let dataMes = Number(dataArray[1]) - 1
+        data[1] = dataMes.toString()
+        let data = new Date(dataArray)
 
         console.log(data)
 
