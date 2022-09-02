@@ -14,8 +14,8 @@ class NegociacaoController {
     adiciona(event){
         event.preventDefault()
 
-        let data = this._inputData.value.split("-")
-        console.log(data)
+        let data = this._inputData.value
+    
         
         
     }
