@@ -8,6 +8,7 @@ class ListaNegociacoes{
     }
 
     get negociacoes(){
-        return this._negociacoes
+        return [].concat(this._negociacoes)
+        //metodo usado para dar uma copia do array para o usuario, programacao defensiva.
     }
 }

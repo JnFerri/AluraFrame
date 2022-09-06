@@ -1,3 +1,5 @@
+import {ValidaCodigo} from './regexp.js'
+
 let numeros = [3,2,11,20,8,7]
 
 let numerosTarefa = numeros.map(function(item){
@@ -38,3 +40,12 @@ let avaliacoes = [
 let aprovados = avaliacoes.filter((prova) => prova.nota >= 7).map((prova) => prova.aluno.nome)
 
             console.log(aprovados)
+
+//RegExp 
+let codigo1 = new ValidaCodigo('GWZ-JJ-12')
+
+let codigo2 = new ValidaCodigo('CXR-JJ-12')
+
+console.log(codigo1.texto)
+
+console.log(codigo2.texto)
