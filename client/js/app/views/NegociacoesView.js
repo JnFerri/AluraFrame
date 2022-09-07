@@ -1,7 +1,7 @@
 class NegociacoesView{
 constructor(elemento,total){
     this._elemento = elemento
-    this._total = 0
+    this._totalVolume = 0
 }
     _template(model){
         return `
@@ -29,7 +29,7 @@ constructor(elemento,total){
         
         <tfoot>
         <td colspan="3"></td>
-        <td>${this._total}</td>
+        <td>${this._totalVolume}</td>
         </tfoot>
     </table`
 
@@ -39,13 +39,9 @@ constructor(elemento,total){
         this._elemento.innerHTML = this._template(model)
     }
 
-    totalizar(valor){
-        let total = 0
-        for(let i=0;i<valor.length;i++){
-            let valorTotal = total +=valor[i]
-            this._total = valorTotal
-        }
-        return this._total
+    totalizar(model){
+        this._totalVolume = DateHelper.totalizador(model.negociacoes.map(n => n.volume))
+        return this._totalVolume
     }
 
     

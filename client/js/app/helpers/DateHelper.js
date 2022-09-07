@@ -19,4 +19,12 @@ class DateHelper{
       return `${data.getDate()}/${(data.getMonth() +1)}/${data.getFullYear()}`
     }
 
+    static totalizador(valor){
+      let total = 0
+      for(let i=0;i<valor.length;i++){
+       var soma = total += valor[i]
+    }
+    return soma
+    }
+
 }
