@@ -1,7 +1,7 @@
 class NegociacoesView{
 constructor(elemento,total){
     this._elemento = elemento
-    this._totalVolume = 0
+    
 }
     _template(model){
         return `
@@ -29,9 +29,10 @@ constructor(elemento,total){
         
         <tfoot>
         <td colspan="3"></td>
-        <td>${this._totalVolume}</td>
+        <td>${model.negociacoes.reduce((total, n) => total+=n.volume, 0.0)}</td>
         </tfoot>
     </table`
+    // no total volume pode-se usar tmb uma IIFE, abrir uma função e fazer o processo por la
 
     }
 
@@ -39,10 +40,7 @@ constructor(elemento,total){
         this._elemento.innerHTML = this._template(model)
     }
 
-    totalizar(model){
-        this._totalVolume = DateHelper.totalizador(model.negociacoes.map(n => n.volume))
-        return this._totalVolume
-    }
+   
 
     
 }

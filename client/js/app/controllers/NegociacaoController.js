@@ -18,7 +18,6 @@ class NegociacaoController {
         event.preventDefault()
         this._listaNegociacoes.adiciona(this._criaNegociacao())
          this._limpaFormulario()
-         this._negociacoesView.totalizar(this._listaNegociacoes)
          this._negociacoesView.update(this._listaNegociacoes)
 
             }
