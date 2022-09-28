@@ -7,6 +7,22 @@ class NegociacaoController {
         this._inputData = $('#data')
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
+        let self = this
+        this._listaNegociacoes = new Proxy(new ListaNegociacoes(), {
+            get(target,prop,receiver){
+                if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)){
+                    return function(){
+                        
+                        Reflect.apply(target[prop], target, arguments)
+                        console.log(`interceptando ${prop}`)
+                        self._negociacoesView.update(target)
+                    }
+                }
+                return Reflect.get(target,prop, receiver)
+                    
+            }
+        })
+
         // ????
         /*
         this._listaNegociacoes =
@@ -23,7 +39,6 @@ class NegociacaoController {
         this._listaNegociacoes.adiciona(this._criaNegociacao())
          this._limpaFormulario()
          this._mensagem.texto = 'Negociacao adicionada com sucesso'
-        this._mensagemView.update(this._mensagem)
         
          
 
@@ -31,7 +46,6 @@ class NegociacaoController {
 
             apagar(){
                 this._mensagem.texto = 'Negociação apagada com sucesso'
-                this.mensagemView.update(this._mensagem)
             }
             _criaNegociacao(){
                 return new Negociacao(
