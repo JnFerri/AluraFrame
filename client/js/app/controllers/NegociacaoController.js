@@ -7,21 +7,8 @@ class NegociacaoController {
         this._inputData = $('#data')
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
-        let self = this
-        this._listaNegociacoes = new Proxy(new ListaNegociacoes(), {
-            get(target,prop,receiver){
-                if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)){
-                    return function(){
-                        
-                        Reflect.apply(target[prop], target, arguments)
-                        console.log(`interceptando ${prop}`)
-                        self._negociacoesView.update(target)
-                    }
-                }
-                return Reflect.get(target,prop, receiver)
-                    
-            }
-        })
+        this._listaNegociacoes = ProxyFactory.create(new ListaNegociacoes(),['adiciona', 'esvazia'], model => this._negociacoesView.update(model))
+
 
         // ????
         /*
@@ -29,8 +16,10 @@ class NegociacaoController {
          new ListaNegociacoes((model) => this._negociacoesView.update(model))*/
 
         this._negociacoesView = new NegociacoesView($('#negociacoesView'))
+        this._negociacoesView.update(this._listaNegociacoes)
         this._mensagem = new Mensagem()
         this._mensagemView = new MensagemView($('#mensagemView'))
+        
         
     }
 
@@ -40,8 +29,6 @@ class NegociacaoController {
          this._limpaFormulario()
          this._mensagem.texto = 'Negociacao adicionada com sucesso'
         
-         
-
             }
 
             apagar(){
