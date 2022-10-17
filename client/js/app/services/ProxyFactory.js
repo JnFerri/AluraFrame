@@ -13,9 +13,7 @@ class ProxyFactory {
             return Reflect.get(target,prop, receiver)
                 
         },
-        set(target,props,value,receiver){
-        Reflect.set(target,props,value,receiver)
-        acao(target)}
+       
         
     }
         
