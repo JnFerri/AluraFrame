@@ -28,9 +28,10 @@ class NegociacaoController {
         this._listaNegociacoes.adiciona(this._criaNegociacao())
          this._limpaFormulario()
          this._mensagem.texto = 'Negociacao adicionada com sucesso'
+    }
          
         
-            }
+            
 
     importarNegociacoes(){
        let service = new NegociacaoService()
